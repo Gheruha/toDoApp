@@ -25,3 +25,14 @@ export function addTodos(userid , description){
         done: false,
     })
 }
+
+// first let's have the todos in our hand
+// @ts-ignore
+
+export function deleteTodos(userid , itemToDelete){
+    const todos = db.get(userid);
+    // @ts-ignore
+    const DeleteIndex = todos.findIndex(item => item.id === itemToDelete);
+
+    todos.splice(DeleteIndex, 1);
+}

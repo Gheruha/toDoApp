@@ -15,9 +15,14 @@ export function load({ cookies }){
 
 // @ts-ignore
 export const actions= {
-    default:async({ request , cookies }) => {
+    // @ts-ignore
+    createTodo:async({ request , cookies }) => {
         const data = await request.formData();
-        
         db.addTodos(cookies.get("userid") , data.get("description"));
+    },
+   // @ts-ignore
+   deleteTodo:async({ request , cookies}) => {
+        const deleteData = await request.formData();
+        db.deleteTodos(cookies.get("userid") , deleteData.get("id"));
     }
 }
