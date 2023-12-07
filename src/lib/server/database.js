@@ -32,6 +32,7 @@ export function addTodos(userid , description){
 export function deleteTodos(userid , itemToDelete){
     const todos = db.get(userid);
     // @ts-ignore
+    // So I take the todos and I say : Hey! I will put in you the findIndex function , you will use "item" as an parameter, after that you to go in this list and to find the id , but how? Simple ! item.id === itemToDelte(parameter from the function that will have the exact id you need to delete)
     const DeleteIndex = todos.findIndex(item => item.id === itemToDelete);
 
     todos.splice(DeleteIndex, 1);
