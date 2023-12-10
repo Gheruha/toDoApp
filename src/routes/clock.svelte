@@ -29,7 +29,6 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="flex flex-col text-center" on:click>
-	<h1>{localTime}</h1>
-	<h1>{mornornoon} , user!</h1>
+<div class="flex flex-col" on:click>
+	<h1 class = "text-violet-700 fixed">{localTime}</h1>
 </div>
