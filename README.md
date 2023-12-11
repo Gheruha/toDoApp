@@ -1,4 +1,5 @@
 # toDoApp
+**Everything is on master branch!**
 To Do project.
 **Languages used:**
 * _JavaScript_
