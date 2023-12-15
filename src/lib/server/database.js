@@ -2,6 +2,7 @@ const db = new Map();
 
 // @ts-ignore
 export function GetTodos(userid) {
+	const currentTime = new Date().toLocaleTimeString();
 	if (!db.get(userid)) {
 		db.set(userid, [
 			{
@@ -9,6 +10,7 @@ export function GetTodos(userid) {
 				description: 'Gym',
 				done: false,
 				setTimer: false,
+				clock: currentTime
 			}
 		]);
 	}
@@ -19,26 +21,26 @@ export function GetTodos(userid) {
 // db = {key=userid : value=[{todos , todos . . .}]}
 export function addTodos(userid, description) {
 	const todos = db.get(userid);
-
+	const currentTime = new Date().toLocaleTimeString();
 	todos.push({
 		id: crypto.randomUUID(),
 		description: description,
 		done: false,
 		setTimer: false,
+		clock: currentTime
 	});
 	console.log(todos);
 }
 
 // @ts-ignore
-export function setTimer(userid, todoId){
+export function setTimer(userid, todoId) {
 	const todos = db.get(userid);
 	// @ts-ignore
-	const todoToUpdate = todos.find(todo => todo.id === todoId);
+	const todoToUpdate = todos.find((todo) => todo.id === todoId);
 
-	if(todoToUpdate){
+	if (todoToUpdate) {
 		todoToUpdate.setTimer = !todoToUpdate.setTimer;
 	}
-
 }
 
 // @ts-ignore
@@ -51,4 +53,18 @@ export function deleteTodos(userid, itemToDelete) {
 
 	// Hey todos again! detele from you the DeleteIndex , only him !
 	todos.splice(DeleteIndex, 1);
+}
+
+// @ts-ignore
+export function setClock(userid, todoid, clock) {
+	const todos = db.get(userid);
+
+	// @ts-ignore
+	const todoIndex = todos.findIndex((todo) => todo.id === todoid);
+	console.log(todoIndex);
+	if (todoIndex) {
+		todoIndex.clock = clock;
+	} else {
+		console.log('nothing');
+	}
 }

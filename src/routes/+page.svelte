@@ -1,8 +1,22 @@
 <script>
-	import { enhance } from '$app/forms';	
-	import { slide , fly } from "svelte/transition";
+// @ts-nocheck
+
+	// All imports are in this section
 	import Clock from './clock.svelte';
+	import { enhance } from '$app/forms';
+	import { slide, fly } from 'svelte/transition';
+	// All imports are in this section
+
 	export let data;
+
+	// Timer
+	let notifications = [];
+	// @ts-ignore
+	function HandleNotification(event){
+		notifications.push(event.detail)
+	}
+	//Timer
+
 </script>
 
 <link
@@ -27,7 +41,7 @@
 	<div class="flex flex-col w-full items-center pt-20">
 		<!-- the Form -->
 		<div class="pb-4">
-			<h1 class = "text-3xl font-semibold">Hello, user!</h1>
+			<h1 class="text-3xl font-semibold">Hello, user!</h1>
 		</div>
 		<form method="POST" class="pb-20" action="?/createTodo" use:enhance>
 			<label for="" class="text-xl text-gray-600"
@@ -42,9 +56,16 @@
 		</form>
 
 		<!-- Todos UI -->
+		<!--GetTodos-->
 		{#each data.todos as todo}
 			<div class="flex w-3/5 text-center mb-4">
-				<div class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300" in:fly={{ y:20 }} out:slide>
+				<div
+					class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300"
+					in:fly={{ y: 20 }}
+					out:slide
+				>
+
+				<!--DeleteTodos-->
 					<form action="?/deleteTodo" method="POST" class="flex w-full justify-between" use:enhance>
 						<input type="hidden" name="id" value={todo.id} />
 						<p>{todo.description}</p>
@@ -52,16 +73,22 @@
 					</form>
 				</div>
 
-				<div class="w-1/5 pt-4" in:fly={{ y:20 }} out:slide>
+				<!--SetTodosTimer-->
+				<div class="w-1/12 p-4" in:fly={{ y: 20 }} out:slide>
 					<form action="?/setTodoTimer" method="POST">
-						<input type="hidden" name="id" value={todo.id} />
 						<button><span class="material-symbols-outlined violet-icon"> timer </span></button>
+						<input type="hidden" name="id" value={todo.id} />
 					</form>
 				</div>
 				{#if todo.setTimer}
-					<Clock />
+					<Clock on:notification = {HandleNotification}/>
 				{/if}
 			</div>
+		{/each}
+		
+		<!--Get notifications-->
+		{#each notifications as notification}
+			<p>{notification}</p>
 		{/each}
 	</div>
 </div>
@@ -82,5 +109,9 @@
 
 	.violet-icon {
 		color: #7e22ce;
+	}
+	.violet-icon:hover{
+		border-radius: 9999px;
+		background-color: #e2e8f0;
 	}
 </style>
