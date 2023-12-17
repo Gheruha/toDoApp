@@ -36,23 +36,26 @@
 		>Minute:
 		<input type="number" class="text-purple-700 w-12 text-center" bind:value={inputMinute} />
 	</label>
-	<button on:click = {startTimer}><span class="material-symbols-outlined violet-icon">
-		alarm_on
-		</span></button>
+	<button on:click={startTimer}
+		><span class="material-symbols-outlined violet-icon"> alarm_on </span></button
+	>
 </div>
 
-	{#if notification}
-	<div class = "bg-slate-200 rounded-lg p-2 w-2/4 border hover:bg-slate-300 box text-center text-lg items-center" in:fly={{ x: 400 }}
-	out:slide>
+{#if notification}
+	<div
+		class="bg-slate-200 rounded-lg p-2 w-2/4 border hover:bg-slate-300 box text-center text-lg items-center"
+		in:fly={{ x: 400 }}
+		out:slide
+	>
 		<p>{notification}</p>
 	</div>
-	{/if}
+{/if}
 
 <style>
 	.violet-icon {
 		color: #7e22ce;
 	}
-	.violet-icon:hover{
+	.violet-icon:hover {
 		border-radius: 9999px;
 		background-color: #e2e8f0;
 	}
