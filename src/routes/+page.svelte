@@ -5,13 +5,11 @@
 	import Clock from './clock.svelte';
 	import { enhance } from '$app/forms';
 	import { slide, fly } from 'svelte/transition';
-	// All imports are in this section
-
 	export let data;
+	// All imports are in this section
 
 	// Timer
 	let notifications = [];
-	// @ts-ignore
 	function HandleNotification(event) {
 		notifications.push(event.detail);
 	}
@@ -23,7 +21,7 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
 />
 
-<!-- Main Div-->
+<!-- Main Div -->
 <div class="flex">
 	<!-- Menu -->
 	<div class="h-full w-1/4 flex flex-col">
@@ -35,6 +33,7 @@
 			<p class="pl-8 text-xl pb-2 hover:text-violet-700">Completed</p>
 		</nav>
 	</div>
+	<!-- Menu End -->
 
 	<!-- Todos Div-->
 	<div class="flex flex-col w-full items-center pt-20">
@@ -55,20 +54,23 @@
 		</form>
 
 		<!-- Todos UI -->
-		<!--GetTodos-->
 		{#each data.todos as todo}
 			<div class="flex w-3/5 text-center mb-4">
+				<!-- GetTodos -->
 				<div
 					class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300 shadow-lg"
 					in:fly={{ y: 20 }}
 					out:slide
 				>
-					<!--DeleteTodos-->
+					<!-- GetTodos -->
+
+					<!-- DeleteTodos -->
 					<form action="?/deleteTodo" method="POST" class="flex w-full justify-between" use:enhance>
 						<input type="hidden" name="id" value={todo.id} />
 						<p>{todo.description}</p>
 						<button><span class="material-symbols-outlined violet-icon"> delete </span></button>
 					</form>
+					<!-- DeleteTodos -->
 				</div>
 
 				<!--SetTodosTimer-->
@@ -78,18 +80,23 @@
 						<input type="hidden" name="id" value={todo.id} />
 					</form>
 				</div>
+				<!--SetTodosTimer-->
+
 				{#if todo.setTimer}
 					<Clock on:notification={HandleNotification} />
 				{/if}
 			</div>
 		{/each}
 
-		<!--Get notifications-->
+		<!-- Get notifications -->
 		{#each notifications as notification}
 			<p>{notification}</p>
 		{/each}
 	</div>
+	<!-- Todos Div End-->
 </div>
+
+<!-- Main Div End-->
 
 <style>
 	.box {
