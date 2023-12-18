@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 
 	// All imports are in this section
 	import Clock from './clock.svelte';
@@ -12,11 +12,10 @@
 	// Timer
 	let notifications = [];
 	// @ts-ignore
-	function HandleNotification(event){
-		notifications.push(event.detail)
+	function HandleNotification(event) {
+		notifications.push(event.detail);
 	}
 	//Timer
-
 </script>
 
 <link
@@ -64,8 +63,7 @@
 					in:fly={{ y: 20 }}
 					out:slide
 				>
-
-				<!--DeleteTodos-->
+					<!--DeleteTodos-->
 					<form action="?/deleteTodo" method="POST" class="flex w-full justify-between" use:enhance>
 						<input type="hidden" name="id" value={todo.id} />
 						<p>{todo.description}</p>
@@ -81,11 +79,11 @@
 					</form>
 				</div>
 				{#if todo.setTimer}
-					<Clock on:notification = {HandleNotification}/>
+					<Clock on:notification={HandleNotification} />
 				{/if}
 			</div>
 		{/each}
-		
+
 		<!--Get notifications-->
 		{#each notifications as notification}
 			<p>{notification}</p>
@@ -110,7 +108,7 @@
 	.violet-icon {
 		color: #7e22ce;
 	}
-	.violet-icon:hover{
+	.violet-icon:hover {
 		border-radius: 9999px;
 		background-color: #e2e8f0;
 	}
