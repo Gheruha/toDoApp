@@ -57,11 +57,7 @@ export function deleteTodos(userid, itemToDelete) {
 
 	// Hey todos again! detele from you the DeleteIndex , only him !
 	todos.splice(DeleteIndex, 1);
-<<<<<<< HEAD
 }
-=======
-}
-
 // @ts-ignore
 export function setClock(userid, todoid, clock) {
 	const todos = GetTodos(userid);
@@ -75,4 +71,3 @@ export function setClock(userid, todoid, clock) {
 		console.log('nothing');
 	}
 }
->>>>>>> f1aaf223a3556428b4fb6d191534e81950fe8f6d
