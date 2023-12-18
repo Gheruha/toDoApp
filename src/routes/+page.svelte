@@ -60,7 +60,7 @@
 		{#each data.todos as todo}
 			<div class="flex w-3/5 text-center mb-4">
 				<div
-					class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300"
+					class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300 shadow-lg"
 					in:fly={{ y: 20 }}
 					out:slide
 				>

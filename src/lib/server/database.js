@@ -54,17 +54,3 @@ export function deleteTodos(userid, itemToDelete) {
 	// Hey todos again! detele from you the DeleteIndex , only him !
 	todos.splice(DeleteIndex, 1);
 }
-
-// @ts-ignore
-export function setClock(userid, todoid, clock) {
-	const todos = db.get(userid);
-
-	// @ts-ignore
-	const todoIndex = todos.findIndex((todo) => todo.id === todoid);
-	console.log(todoIndex);
-	if (todoIndex) {
-		todoIndex.clock = clock;
-	} else {
-		console.log('nothing');
-	}
-}

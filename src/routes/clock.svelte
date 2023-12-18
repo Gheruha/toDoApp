@@ -9,6 +9,7 @@
 	let inputMinute = 0;
 	let notification = '';
 	const dispatcher = createEventDispatcher();
+	let show_timer = true;
 
 	function startTimer() {
 		const intervalID = setInterval(() => {
@@ -20,6 +21,7 @@
 				notification = 'Time reached!';
 				clearInterval(intervalID);
 				dispatcher('notification', notification);
+				show_timer = false;
 			}
 		}, 1000);
 	}
@@ -28,31 +30,49 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="flex 1/5 pr-4" on:click>
-	<label for="hour" class="font-semibold pr-2"
+	<label for="hour" class="font-semibold pr-2" style="display: {show_timer ? 'block' : 'none'};"
 		>Hour:
-		<input type="number" class="text-purple-700 w-12 text-center" bind:value={inputHour} />
+		<input
+			type="number"
+			class="text-purple-700 w-12 text-center"
+			bind:value={inputHour}
+			style="display: {show_timer ? 'block' : 'none'};"
+		/>
 	</label>
-	<label for="minutes" class="font-semibold pr-2"
+	<label for="minutes" class="font-semibold pr-2" style="display: {show_timer ? 'block' : 'none'};"
 		>Minute:
-		<input type="number" class="text-purple-700 w-12 text-center" bind:value={inputMinute} />
+		<input
+			type="number"
+			class="text-purple-700 w-12 text-center"
+			bind:value={inputMinute}
+			style="display: {show_timer ? 'block' : 'none'};"
+		/>
 	</label>
-	<button on:click = {startTimer}><span class="material-symbols-outlined violet-icon">
-		alarm_on
-		</span></button>
+	<button on:click={startTimer}
+		><span
+			class="material-symbols-outlined violet-icon"
+			style="display: {show_timer ? 'block' : 'none'};"
+		>
+			alarm_on
+		</span></button
+	>
 </div>
 
-	{#if notification}
-	<div class = "bg-slate-200 rounded-lg p-2 w-2/4 border hover:bg-slate-300 box text-center text-lg items-center" in:fly={{ x: 400 }}
-	out:slide>
+{#if notification}
+	<div
+		class="bg-violet-100 rounded-lg p-2 w-2/4 border hover:bg-violet-200 box text-center text-lg items-center shadow-lg"
+		in:fly={{ x: 1000 }}
+		out:slide
+	>
 		<p>{notification}</p>
 	</div>
-	{/if}
+{/if}
 
 <style>
 	.violet-icon {
 		color: #7e22ce;
 	}
-	.violet-icon:hover{
+	.violet-icon:hover {
 		border-radius: 9999px;
 		background-color: #e2e8f0;
 	}
