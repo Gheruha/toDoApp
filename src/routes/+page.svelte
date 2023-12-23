@@ -8,12 +8,17 @@
 	export let data;
 	// All imports are in this section
 
-	// Timer
+	const now = new Date();
+	let selectedHour = now.getHours();
+	let selectedMinute = now.getMinutes();
+	const hours = Array.from({ length: 24 }, (_, i) => i);
+	const minutes = Array.from({ length: 60 }, (_, i) => i);
+	/* Timer
 	let notifications = [];
-	function HandleNotification(event) {
+	function HandleTimer(event) {
 		notifications.push(event.detail);
 	}
-	//Timer
+	Timer*/
 </script>
 
 <link
@@ -53,16 +58,15 @@
 			</label>
 		</form>
 
-		<!-- Todos UI -->
 		{#each data.todos as todo}
 			<div class="flex w-3/5 text-center mb-4">
-				<!-- GetTodos -->
+				<!-- Todos UI -->
 				<div
 					class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300 shadow-lg"
 					in:fly={{ y: 20 }}
 					out:slide
 				>
-					<!-- GetTodos -->
+					<!-- Todos UI -->
 
 					<!-- DeleteTodos -->
 					<form action="?/deleteTodo" method="POST" class="flex w-full justify-between" use:enhance>
@@ -83,14 +87,31 @@
 				<!--SetTodosTimer-->
 
 				{#if todo.setTimer}
-					<Clock on:notification={HandleNotification} />
+					<div class="flex w-52 pt-2">
+						<form action="?/sendClockData" method="POST">
+							<select name="hourData">
+								<option value="" disabled selected>Hour:</option>
+								{#each hours as hour}
+									<option value={+hour}>{hour}</option>
+								{/each}
+							</select>
+							<select name="minuteData">
+								<option value="" disabled selected>Minute:</option>
+								{#each minutes as minute}
+									<option value={+minute}>{minute}</option>
+								{/each}
+							</select>
+							<button class = "hidden"><span class="material-symbols-outlined violet-icon"> alarm_on </span></button>
+							<input type="hidden" name="todoid" value={todo.id} />
+						</form>
+					</div>
+					{#if todo.notification}
+					<div>
+						<p>Hello</p>
+					</div>
+					{/if}
 				{/if}
 			</div>
-		{/each}
-
-		<!-- Get notifications -->
-		{#each notifications as notification}
-			<p>{notification}</p>
 		{/each}
 	</div>
 	<!-- Todos Div End-->

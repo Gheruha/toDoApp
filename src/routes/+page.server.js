@@ -27,5 +27,15 @@ export const actions = {
 	setTodoTimer: async ({ request, cookies }) => {
 		const todoToSetTimer = await request.formData();
 		db.setTimer(cookies.get(key), todoToSetTimer.get('id'));
+	},
+
+	sendClockData: async ({ request, cookies }) => {
+		const timerData = await request.formData();
+		db.setClockData(
+			cookies.get(key),
+			timerData.get('todoid'),
+			+timerData.get('hourData'),
+			+timerData.get('minuteData')
+		);
 	}
 };

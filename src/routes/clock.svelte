@@ -1,20 +1,22 @@
 <script>
-	import { onMount } from 'svelte';
+	//@ts-nocheck
 	import { createEventDispatcher } from 'svelte';
-	import { enhance } from '$app/forms';
 	import { slide, fly } from 'svelte/transition';
 
 	let inputHour = 0;
 	let inputMinute = 0;
 	let notification = '';
-	const dispatcher = createEventDispatcher(); // I will help you to make the communication of child to parent, I will send the functions to him , the events and so on ...
+	const dispatcher = createEventDispatcher();
 	let show_timer = true;
+
+	export let todo;
 
 	function startTimer() {
 		const intervalID = setInterval(() => {
 			const now = new Date();
 			const currentHour = now.getHours();
 			const currentMinute = now.getMinutes();
+			dispatcher('setTimer', { todoId: todo.id, clock: { hour: inputHour, minute: inputMinute } });
 
 			if (inputHour === currentHour && inputMinute === currentMinute) {
 				notification = 'Time reached!';
@@ -28,7 +30,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="flex 1/5 pr-4" on:click>
+<div class="flex pr-4" on:click>
 	<label for="hour" class="font-semibold pr-2" style="display: {show_timer ? 'block' : 'none'};"
 		>Hour:
 		<input
