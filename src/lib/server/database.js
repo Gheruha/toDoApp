@@ -59,18 +59,27 @@ export function setClockData(userid, todoid, hourData, minuteData) {
 	if (todoIndex !== -1) {
 		todos[todoIndex].hour = hourData;
 		todos[todoIndex].minute = minuteData;
-	/*
+
 		const intervalID = setInterval(() => {
 			const now = new Date();
 			const currentHour = now.getHours();
 			const currentMinute = now.getMinutes();
-
-			todos[todoIndex].minuteLeft = todos[todoIndex].minute - currentMinute;
+			console.log(todos[todoIndex].notification);
 
 			if (todos[todoIndex].hour == currentHour && todos[todoIndex].minute == currentMinute) {
 				todos[todoIndex].notification = true;
 				clearInterval(intervalID);
 			}
 		}, 1000);
-	*/}
+	}
+}
+
+export function setTodoDone(userid, todoid) {
+	const todos = GetTodos(userid);
+	const todoIndex = todos.find((todo) => todo.id === todoid);
+
+	if (todoIndex !== -1) {
+		console.log(todoIndex.done);
+		todoIndex.done = !todoIndex.done;
+	}
 }

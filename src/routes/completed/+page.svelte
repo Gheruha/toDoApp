@@ -29,9 +29,9 @@
 		<nav class="h-full w-1/4 bg-slate-200 flex flex-col fixed top-0">
 			<span class="material-symbols-outlined pt-4 pb-20 pl-6 big-icon violet-icon"> task </span>
 
-			<p class="pl-8 text-xl pb-2 hover:text-violet-700 text-violet-900 font-semibold">All</p>
+			<a href="/" class="pl-8 text-xl pb-2 hover:text-violet-700">All</a>
 			<a href="/active" class="pl-8 text-xl pb-2 hover:text-violet-700">Active</a>
-			<a href="/completed" class="pl-8 text-xl pb-2 hover:text-violet-700">Completed</a>
+			<p class="pl-8 text-xl pb-2 hover:text-violet-700 text-violet-900 font-semibold">Completed</p>
 		</nav>
 	</div>
 	<!-- Menu End -->
@@ -57,43 +57,49 @@
 		{#each data.todos as todo}
 			<!-- Todos UI -->
 			<div class="flex w-3/5 text-center mb-4">
-				<!-- Done Form-->
-				<form action="?/setDone" method="POST">
-					<button on:click={() => DoneOrNot(todo)} class="pt-4 pr-4" in:fly={{ y: 20 }} out:slide
-						><span class="material-symbols-outlined" class:done={todo.done}>
-							done_outline
-						</span></button
-					>
-					<input type="hidden" value={todo.id} name="id" />
-				</form>
-				<!-- Done Form-->
+				{#if todo.done}
+					<!-- Done Form-->
+					<form action="?/setDone" method="POST">
+						<button on:click={() => DoneOrNot(todo)} class="pt-4 pr-4" in:fly={{ y: 20 }} out:slide
+							><span class="material-symbols-outlined" class:done={todo.done}>
+								done_outline
+							</span></button
+						>
+						<input type="hidden" value={todo.id} name="id" />
+					</form>
+					<!-- Done Form-->
 
-				<!-- The boxes-->
-				<div
-					class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300 shadow-lg"
-					in:fly={{ y: 20 }}
-					out:slide
-				>
 					<!-- The boxes-->
+					<div
+						class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300 shadow-lg"
+						in:fly={{ y: 20 }}
+						out:slide
+					>
+						<!-- The boxes-->
 
-					<!-- DeleteTodos -->
-					<form action="?/deleteTodo" method="POST" class="flex w-full justify-between" use:enhance>
-						<input type="hidden" name="id" value={todo.id} />
-						<p>{todo.description}</p>
-						<button><span class="material-symbols-outlined violet-icon"> delete </span></button>
-					</form>
-					<!-- DeleteTodos -->
-				</div>
+						<!-- DeleteTodos -->
+						<form
+							action="?/deleteTodo"
+							method="POST"
+							class="flex w-full justify-between"
+							use:enhance
+						>
+							<input type="hidden" name="id" value={todo.id} />
+							<p>{todo.description}</p>
+							<button><span class="material-symbols-outlined violet-icon"> delete </span></button>
+						</form>
+						<!-- DeleteTodos -->
+					</div>
 
-				<!--SetTodosTimer-->
-				<div class="w-1/12 p-4" in:fly={{ y: 20 }} out:slide>
-					<form action="?/setTodoTimer" method="POST">
-						<button><span class="material-symbols-outlined violet-icon"> timer </span></button>
-						<input type="hidden" name="id" value={todo.id} />
-					</form>
-				</div>
-				<!--SetTodosTimer-->
-
+					<!--SetTodosTimer-->
+					<div class="w-1/12 p-4" in:fly={{ y: 20 }} out:slide>
+						<form action="?/setTodoTimer" method="POST">
+							<button><span class="material-symbols-outlined violet-icon"> timer </span></button>
+							<input type="hidden" name="id" value={todo.id} />
+						</form>
+					</div>
+					<!--SetTodosTimer-->
+				{/if}
 				<!-- SendTodosTimerData -->
 				{#if todo.setTimer}
 					<div class="flex w-52 pt-2">
