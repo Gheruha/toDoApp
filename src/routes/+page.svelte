@@ -10,11 +10,22 @@
 	const hours = Array.from({ length: 24 }, (_, i) => i);
 	const minutes = Array.from({ length: 60 }, (_, i) => i);
 
+	// DEBUG PART
+	let debug = [{count: 0}];
+	function RunDebug(){
+
+		setInterval(() => {
+			debug[0].count += 1;
+			if(debug[0].count == 5){
+				debug[0].count = 0;
+			}
+		},500)
+	}
+
 	//Functions
 	function DoneOrNot(todo) {
 		todo.done = !todo.done;
 	}
-	//Functions
 </script>
 
 <link
@@ -38,9 +49,17 @@
 
 	<!-- Todos Div-->
 	<div class="flex flex-col w-full items-center pt-20">
+		
 		<!-- the Form -->
 		<div class="pb-4">
 			<h1 class="text-3xl font-semibold">Hello, user!</h1>
+
+			<!-- DEBUG -->
+			<button on:click = {RunDebug}>Click</button>
+			{#each debug as deb}
+			<p>{deb.count}</p>
+			{/each}
+			<!-- DEBUG -->
 		</div>
 		<form method="POST" class="pb-20" action="?/createTodo" use:enhance>
 			<label for="" class="text-xl text-gray-600"
@@ -54,7 +73,7 @@
 			</label>
 		</form>
 
-		{#each data.todos as todo}
+		{#each data.todos as todo ,index}
 			<!-- Todos UI -->
 			<div class="flex w-3/5 text-center mb-4">
 				<!-- Done Form-->
@@ -80,6 +99,7 @@
 					<form action="?/deleteTodo" method="POST" class="flex w-full justify-between" use:enhance>
 						<input type="hidden" name="id" value={todo.id} />
 						<p>{todo.description}</p>
+						<p>{todo.elapsed}</p>
 						<button><span class="material-symbols-outlined violet-icon"> delete </span></button>
 					</form>
 					<!-- DeleteTodos -->

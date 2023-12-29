@@ -1,6 +1,7 @@
 // @ts-nocheck
 const db = new Map();
 
+// GET TODOS
 export function GetTodos(userid) {
 	if (!db.get(userid)) {
 		db.set(userid, [
@@ -20,6 +21,7 @@ export function GetTodos(userid) {
 	return db.get(userid);
 }
 
+// ADD TODOS
 export function addTodos(userid, description) {
 	const todos = GetTodos(userid);
 	todos.push({
@@ -33,9 +35,9 @@ export function addTodos(userid, description) {
 		hourLeft: 0,
 		minuteLeft: 0
 	});
-	console.log(todos);
 }
 
+// DELETE TODOS
 export function deleteTodos(userid, itemToDelete) {
 	const todos = GetTodos(userid);
 	const DeleteIndex = todos.findIndex((item) => item.id === itemToDelete);
@@ -43,6 +45,7 @@ export function deleteTodos(userid, itemToDelete) {
 	todos.splice(DeleteIndex, 1);
 }
 
+// SET TIMER
 export function setTimer(userid, todoId) {
 	const todos = GetTodos(userid);
 	const todoToUpdate = todos.find((todo) => todo.id === todoId);
@@ -52,34 +55,35 @@ export function setTimer(userid, todoId) {
 	}
 }
 
+// SET CLOCK DATA , NOTIFICATION
 export function setClockData(userid, todoid, hourData, minuteData) {
-	const todos = GetTodos(userid);
+	let todos = GetTodos(userid);
 	const todoIndex = todos.findIndex((todo) => todo.id === todoid);
+	if (todoIndex === -1) return; // Guard / Protecting / I check the preconditsion ()
+	
+	todos[todoIndex].hour = hourData;
+	todos[todoIndex].minute = minuteData; 
+	todos[todoIndex].elapsed = 0;
 
-	if (todoIndex !== -1) {
-		todos[todoIndex].hour = hourData;
-		todos[todoIndex].minute = minuteData;
-
-		const intervalID = setInterval(() => {
-			const now = new Date();
-			const currentHour = now.getHours();
-			const currentMinute = now.getMinutes();
-			console.log(todos[todoIndex].notification);
-
-			if (todos[todoIndex].hour == currentHour && todos[todoIndex].minute == currentMinute) {
-				todos[todoIndex].notification = true;
-				clearInterval(intervalID);
-			}
-		}, 1000);
-	}
+	const intervalID = setInterval(() => {
+		const now = new Date();
+		const currentHour = now.getHours();
+		const currentMinute = now.getMinutes();
+		todos[todoIndex].elapsed = todos[todoIndex].elapsed + 1;
+		
+		if (todos[todoIndex].hour == currentHour && todos[todoIndex].minute == currentMinute) {
+			todos[todoIndex].notification = true;
+			todos[todoIndex].elapsed = 123;
+			clearInterval(intervalID);
+		}
+	}, 500);
 }
 
+// SET TODOS DONE
 export function setTodoDone(userid, todoid) {
 	const todos = GetTodos(userid);
 	const todoIndex = todos.find((todo) => todo.id === todoid);
 
-	if (todoIndex !== -1) {
-		console.log(todoIndex.done);
-		todoIndex.done = !todoIndex.done;
-	}
+	if (todoIndex === -1) return;
+	todoIndex.done = !todoIndex.done;
 }
