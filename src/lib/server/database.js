@@ -60,9 +60,9 @@ export function setClockData(userid, todoid, hourData, minuteData) {
 	let todos = GetTodos(userid);
 	const todoIndex = todos.findIndex((todo) => todo.id === todoid);
 	if (todoIndex === -1) return; // Guard / Protecting / I check the preconditsion ()
-	
+
 	todos[todoIndex].hour = hourData;
-	todos[todoIndex].minute = minuteData; 
+	todos[todoIndex].minute = minuteData;
 	todos[todoIndex].elapsed = 0;
 
 	const intervalID = setInterval(() => {
@@ -70,7 +70,7 @@ export function setClockData(userid, todoid, hourData, minuteData) {
 		const currentHour = now.getHours();
 		const currentMinute = now.getMinutes();
 		todos[todoIndex].elapsed = todos[todoIndex].elapsed + 1;
-		
+
 		if (todos[todoIndex].hour == currentHour && todos[todoIndex].minute == currentMinute) {
 			todos[todoIndex].notification = true;
 			todos[todoIndex].elapsed = 123;
