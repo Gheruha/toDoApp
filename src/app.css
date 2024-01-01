@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.done {
+	color: #059669;
+}
+.box {
+	transition: border-width 0.1s ease-in-out;
+}
+
+.box:hover {
+	border-width: 2px;
+	border-color: #7e22ce;
+}
+
+.violet-icon {
+	color: #7e22ce;
+}
+.violet-icon:hover {
+	border-radius: 9999px;
+	background-color: #e2e8f0;
+}
