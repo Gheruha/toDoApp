@@ -19,7 +19,7 @@
 
 {#each data.todos as todo}
 	<!-- Todos UI -->
-	<div class="flex w-3/5 text-center mb-4">
+	<div class="flex w-3/5 text-center mb-4" class:box-done={todo.done}>
 		{#if !todo.done}
 			<!-- Done Form-->
 			<form action="?/setDone" method="POST">
@@ -34,7 +34,7 @@
 
 			<!-- The boxes-->
 			<div
-				class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300 shadow-lg"
+				class="w-4/5 p-4 box rounded-lg bg-slate-100 text-lg hover:bg-slate-200 shadow-lg"
 				in:fly={{ y: 20 }}
 				out:slide
 			>

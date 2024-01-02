@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { createTodo, deleteTodo, setTodoTimer, sendClockData, setDone } from '$lib/server/actions';
+import { createTodo, deleteTodo, setTodoTimer, sendClockData, setDone} from '$lib/server/actions';
 
 // ACTIONS
 export const actions = {
@@ -7,5 +7,5 @@ export const actions = {
 	deleteTodo,
 	setTodoTimer,
 	sendClockData,
-	setDone
+	setDone,
 };

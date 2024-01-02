@@ -4,7 +4,16 @@
 
 .done {
 	color: #059669;
+	transition: font-weight 0.3s ease-in-out;
 }
+.icon{
+	border-radius: 9999px;
+}
+
+.icon:hover{
+	background-color: #e2e8f0;
+}
+
 .box {
 	transition: border-width 0.1s ease-in-out;
 }
@@ -14,9 +23,14 @@
 	border-color: #7e22ce;
 }
 
+.box-done {
+	opacity: 0.6;
+}
+
 .violet-icon {
 	color: #7e22ce;
 }
+
 .violet-icon:hover {
 	border-radius: 9999px;
 	background-color: #e2e8f0;

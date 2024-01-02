@@ -10,31 +10,19 @@
 	const hours = Array.from({ length: 24 }, (_, i) => i);
 	const minutes = Array.from({ length: 60 }, (_, i) => i);
 
-	/* DEBUG PART
-	let debug = [{count: 0}];
-	function RunDebug(){
-
-		setInterval(() => {
-			debug[0].count += 1;
-			if(debug[0].count == 5){
-				debug[0].count = 0;
-			}
-		},500)
-	}*/
-
 	//Functions
 	function DoneOrNot(todo) {
 		todo.done = !todo.done;
 	}
 </script>
 
-{#each data.todos as todo, index}
+{#each data.todos as todo (todo.id)}
 	<!-- Todos UI -->
-	<div class="flex w-3/5 text-center mb-4">
+	<div class="flex w-3/5 text-center mb-4" class:box-done={todo.done}>
 		<!-- Done Form-->
 		<form action="?/setDone" method="POST">
 			<button on:click={() => DoneOrNot(todo)} class="pt-4 pr-4" in:fly={{ y: 20 }} out:slide
-				><span class="material-symbols-outlined" class:done={todo.done}>
+				><span class="material-symbols-outlined icon" class:done={todo.done}>
 					done_outline
 				</span></button
 			>
@@ -44,7 +32,7 @@
 
 		<!-- The boxes-->
 		<div
-			class="w-4/5 p-4 box rounded-lg bg-slate-200 text-lg hover:bg-slate-300 shadow-lg"
+			class="w-4/5 p-4 box rounded-lg bg-slate-100 text-lg hover:bg-slate-200 shadow-lg"
 			in:fly={{ y: 20 }}
 			out:slide
 		>
@@ -54,7 +42,6 @@
 			<form action="?/deleteTodo" method="POST" class="flex w-full justify-between" use:enhance>
 				<input type="hidden" name="id" value={todo.id} />
 				<p>{todo.description}</p>
-				<!--<p>{todo.elapsed}</p> -->
 				<button><span class="material-symbols-outlined violet-icon"> delete </span></button>
 			</form>
 			<!-- DeleteTodos -->
