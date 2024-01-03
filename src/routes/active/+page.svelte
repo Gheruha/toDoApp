@@ -34,7 +34,7 @@
 
 			<!-- The boxes-->
 			<div
-				class="w-4/5 p-4 box rounded-lg bg-slate-100 text-lg hover:bg-slate-200 shadow-lg"
+				class="w-4/5 p-4 box rounded-lg bg-slate-100 text-lg hover:bg-slate-200 shadow-lg dark:bg-zinc-700 dark:hover:bg-zinc-700"
 				in:fly={{ y: 20 }}
 				out:slide
 			>
@@ -44,7 +44,7 @@
 				<form action="?/deleteTodo" method="POST" class="flex w-full justify-between" use:enhance>
 					<input type="hidden" name="id" value={todo.id} />
 					<p>{todo.description}</p>
-					<button><span class="material-symbols-outlined violet-icon"> delete </span></button>
+					<button><span class="material-symbols-outlined color-icon"> delete </span></button>
 				</form>
 				<!-- DeleteTodos -->
 			</div>
@@ -52,34 +52,35 @@
 			<!--SetTodosTimer-->
 			<div class="w-1/12 p-4" in:fly={{ y: 20 }} out:slide>
 				<form action="?/setTodoTimer" method="POST">
-					<button><span class="material-symbols-outlined violet-icon"> timer </span></button>
+					<button><span class="material-symbols-outlined icon"> timer </span></button>
 					<input type="hidden" name="id" value={todo.id} />
 				</form>
 			</div>
 			<!--SetTodosTimer-->
-		{/if}
-		<!-- SendTodosTimerData -->
-		{#if todo.setTimer}
-			<div class="flex w-52 pt-2">
-				<form action="?/sendClockData" method="POST">
-					<select name="hourData">
-						<option value="" disabled selected>Hour:</option>
-						{#each hours as hour}
-							<option value={+hour}>{hour}</option>
-						{/each}
-					</select>
-					<select name="minuteData">
-						<option value="" disabled selected>Minute:</option>
-						{#each minutes as minute}
-							<option value={+minute}>{minute}</option>
-						{/each}
-					</select>
-					<button class="hidden"
-						><span class="material-symbols-outlined violet-icon"> alarm_on </span></button
-					>
-					<input type="hidden" name="todoid" value={todo.id} />
-				</form>
-			</div>
+
+			<!-- SendTodosTimerData -->
+			{#if todo.setTimer}
+				<div class="flex w-52 pt-2">
+					<form action="?/sendClockData" method="POST">
+						<select name="hourData" class="dark:bg-zinc-800 dark:text-white">
+							<option value="" disabled selected>Hour:</option>
+							{#each hours as hour}
+								<option value={+hour}>{hour}</option>
+							{/each}
+						</select>
+						<select name="minuteData" class="dark:bg-zinc-800 dark:text-white">
+							<option value="" disabled selected>Minute:</option>
+							{#each minutes as minute}
+								<option value={+minute}>{minute}</option>
+							{/each}
+						</select>
+						<button class="hidden"
+							><span class="material-symbols-outlined violet-icon"> alarm_on </span></button
+						>
+						<input type="hidden" name="todoid" value={todo.id} />
+					</form>
+				</div>
+			{/if}
 		{/if}
 		<!-- SendTodosTimerData -->
 	</div>

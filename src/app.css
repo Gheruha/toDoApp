@@ -6,11 +6,12 @@
 	color: #059669;
 	transition: font-weight 0.3s ease-in-out;
 }
-.icon{
+
+.icon {
 	border-radius: 9999px;
 }
 
-.icon:hover{
+.icon:hover {
 	background-color: #e2e8f0;
 }
 
@@ -20,18 +21,31 @@
 
 .box:hover {
 	border-width: 2px;
-	border-color: #7e22ce;
+	border-color: #f87171;
 }
 
 .box-done {
 	opacity: 0.6;
 }
 
-.violet-icon {
-	color: #7e22ce;
+.color-icon {
+	color: #f87171;
 }
 
 .violet-icon:hover {
 	border-radius: 9999px;
 	background-color: #e2e8f0;
+}
+
+body {
+	transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+	@apply bg-white dark:bg-zinc-800 text-black dark:text-white text-center;
+}
+
+nav {
+	transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
 }

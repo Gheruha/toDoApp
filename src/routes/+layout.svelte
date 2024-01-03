@@ -1,26 +1,8 @@
 <script>
 	// @ts-nocheck
 	import '../app.css';
-	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
-
-	let mornornoon = '';
-	function updateTime() {
-		const date = new Date();
-		const hour = date.getHours();
-
-		if (hour >= 12 && hour < 18) {
-			mornornoon = 'Good afternoon';
-		} else if (hour < 12) {
-			mornornoon = 'Good morning';
-		} else {
-			mornornoon = 'Good evening';
-		}
-	}
-	onMount(() => {
-		updateTime();
-		setInterval(updateTime, 1000);
-	});
+	import ThemeSwitch from '$lib/themeSwitch/themeSwitch.svelte';
 </script>
 
 <link
@@ -31,20 +13,26 @@
 <!-- Main Div -->
 <div class="flex">
 	<!-- Menu -->
-	<div class="h-full w-1/5 flex flex-col">
-		<nav class="h-full w-1/5 bg-slate-100 flex flex-col fixed top-0">
-			<span class="material-symbols-outlined pt-4 pb-20 pl-6 big-icon"> task </span>
+	<div class="h-full w-1/5">
+		<nav
+			class="h-full w-1/5 bg-slate-100 dark:bg-zinc-700 fixed top-0 flex flex-col text-center p-4"
+		>
+			<ThemeSwitch />
 
-			<a href="/" class="pl-8 text-xl pb-2 hover:text-violet-700 rounded-lg hover:bg-slate-200 p-2"
+			<p class="pb-24"></p>
+			<a
+				href="/"
+				class="text-xl hover:text-red-400 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-600 p-2"
 				>All</a
 			>
 			<a
 				href="/active"
-				class="pl-8 text-xl pb-2 hover:text-violet-700 rounded-lg hover:bg-slate-200 p-2">Active</a
+				class="text-xl hover:text-red-400 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-600 p-2"
+				>Active</a
 			>
 			<a
 				href="/completed"
-				class="pl-8 text-xl pb-2 hover:text-violet-700 rounded-lg hover:bg-slate-200 p-2"
+				class="text-xl hover:text-red-400 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-600 p-2"
 				>Completed</a
 			>
 		</nav>
@@ -55,13 +43,13 @@
 	<div class="flex flex-col w-full items-center pt-20">
 		<!-- the Form -->
 		<div class="pb-4">
-			<h1 class="text-3xl font-semibold">{mornornoon}, user!</h1>
+			<h1 class="text-3xl font-semibold">Welcome, user!</h1>
 		</div>
 		<form method="POST" class="pb-20" action="?/createTodo" use:enhance>
-			<label for="" class="text-xl text-gray-600">
+			<label for="" class="text-xl text-gray-400">
 				<input
 					type="text"
-					class="rounded-md bg-slate-50 border border-slate-200 p-4 h-12 w-96 placeholder:"
+					class="rounded-md bg-slate-50 border border-slate-200 dark:bg-zinc-600 dark:border-zinc-700 p-4 h-12 w-96 placeholder:"
 					name="description"
 					autocomplete="off"
 					placeholder="what needs to be done?"
@@ -76,17 +64,12 @@
 </div>
 
 <style>
-	.big-icon {
-		font-size: 42px;
-		color: #7e22ce;
-	}
-
 	a {
 		font-weight: normal;
 	}
 
 	a:active {
-		color: #7e22ce;
+		color: #f87171;
 		font-weight: bold;
 	}
 </style>
