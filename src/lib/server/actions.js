@@ -22,8 +22,8 @@ export const sendClockData = async ({ request, cookies }) => {
 	db.setClockData(
 		cookies.get(key),
 		timerData.get('todoid'),
-		+timerData.get('hourData'),
-		+timerData.get('minuteData')
+		timerData.get('hourData'),
+		timerData.get('minuteData')
 	);
 };
 
