@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 
-	let darkMode = true;
+	let darkMode = false;
 
 	function handleSwitchDarkMode() {
 		darkMode = !darkMode;
@@ -45,6 +45,6 @@
 
 	#theme-toggle:checked + label {
 		@apply bg-transparent;
-		box-shadow: inset -6px -4px 1px 1px #ddd;
+		box-shadow: inset -4px -3px 1px 1px #ddd;
 	}
 </style>

@@ -5,6 +5,6 @@
 </script>
 
 {#each data.todos as todo (todo.id)}
-	<!-- Todos UI -->
+	<!-- Todos -->
 	<Todos {todo} />
 {/each}

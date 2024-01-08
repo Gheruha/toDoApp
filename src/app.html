@@ -11,6 +11,10 @@
 			(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
 				? document.documentElement.classList.add('dark')
 				: document.documentElement.classList.remove('dark');
+
+			localStorage.menu === 'show'
+				? document.documentElement.classList.add('show')
+				: document.documentElement.classList.remove('show');
 		</script>
 
 		%sveltekit.head%

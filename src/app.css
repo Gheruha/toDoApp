@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.todos-div {
+	width: 70%;
+}
+
 .done {
 	color: #059669;
 	transition: font-weight 0.3s ease-in-out;
@@ -12,11 +16,12 @@
 }
 
 .icon:hover {
-	background-color: #e2e8f0;
+	background-color: #cbd5e1;
 }
 
 .box {
 	transition: border-width 0.1s ease-in-out;
+	width: 80%;
 }
 
 .box:hover {
@@ -37,6 +42,39 @@
 	background-color: #e2e8f0;
 }
 
+.menu {
+	height: 100%;
+	width: 20%;
+}
+
+.show_menu_icon {
+	display: block;
+	position: fixed;
+	top: 0;
+}
+
+.display_menu_phone {
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+.todo-input {
+	width: 384px;
+}
+
+@media (max-width: 760px) {
+	.todos-div {
+		width: 100%;
+	}
+}
+
+@media (max-width: 450px) {
+	.todo-input {
+		width: 284px;
+	}
+}
+
 body {
 	transition:
 		background-color 0.2s ease-in-out,
@@ -48,4 +86,13 @@ nav {
 	transition:
 		background-color 0.2s ease-in-out,
 		color 0.2s ease-in-out;
+}
+
+a {
+	font-weight: normal;
+}
+
+a:active {
+	color: #f87171;
+	font-weight: bold;
 }
