@@ -7,7 +7,7 @@ export function GetTodos(userid) {
 		db.set(userid, [
 			{
 				id: crypto.randomUUID(),
-				description: 'Gym',
+				description: 'Add Todos 😁',
 				done: false,
 				setTimer: false,
 				hour: 0,
