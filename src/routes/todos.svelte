@@ -56,15 +56,13 @@
       <div class="flex w-52 pt-2">
         <form action="?/sendClockData" method="POST">
           <select name="hourData" class="dark:bg-zinc-800 dark:text-white">
-            <option value="" disabled selected>Hour:</option>
             {#each hours as hour}
-              <option value={hour}>{hour}</option>
+              <option value={hour} selected={hour == todo.hour}>{hour}</option>
             {/each}
           </select>
           <select name="minuteData" class="dark:bg-zinc-800 dark:text-white">
-            <option value="" disabled selected>Minute:</option>
             {#each minutes as minute}
-              <option value={minute}>{minute}</option>
+              <option value={minute} selected={minute == todo.minute}>{minute}</option>
             {/each}
           </select>
           <button class="hidden"
