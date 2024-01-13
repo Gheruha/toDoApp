@@ -3,96 +3,96 @@
 @tailwind utilities;
 
 .todos-div {
-	width: 70%;
+  width: 70%;
 }
 
 .done {
-	color: #059669;
-	transition: font-weight 0.3s ease-in-out;
+  color: #059669;
+  transition: font-weight 0.3s ease-in-out;
 }
 
 .icon {
-	border-radius: 9999px;
+  border-radius: 9999px;
 }
 
 .icon:hover {
-	background-color: #cbd5e1;
+  background-color: #cbd5e1;
 }
 
 .box {
-	transition: border-width 0.1s ease-in-out;
-	width: 80%;
+  transition: border-width 0.1s ease-in-out;
+  width: 80%;
 }
 
 .box:hover {
-	border-width: 2px;
-	border-color: #f87171;
+  border-width: 2px;
+  border-color: #f87171;
 }
 
 .box-done {
-	opacity: 0.6;
+  opacity: 0.6;
 }
 
 .color-icon {
-	color: #f87171;
+  color: #f87171;
 }
 
 .violet-icon:hover {
-	border-radius: 9999px;
-	background-color: #e2e8f0;
+  border-radius: 9999px;
+  background-color: #e2e8f0;
 }
 
 .menu {
-	height: 100%;
-	width: 20%;
+  height: 100%;
+  width: 20%;
 }
 
 .show_menu_icon {
-	display: block;
-	position: fixed;
-	top: 0;
+  display: block;
+  position: fixed;
+  top: 0;
 }
 
 .display_menu_phone {
-	display: block;
-	text-align: center;
-	width: 100%;
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
 .todo-input {
-	width: 384px;
+  width: 384px;
 }
 
 @media (max-width: 760px) {
-	.todos-div {
-		width: 100%;
-	}
+  .todos-div {
+    width: 100%;
+  }
 }
 
 @media (max-width: 450px) {
-	.todo-input {
-		width: 284px;
-	}
+  .todo-input {
+    width: 284px;
+  }
 }
 
 body {
-	transition:
-		background-color 0.2s ease-in-out,
-		color 0.2s ease-in-out;
-	@apply bg-white dark:bg-zinc-800 text-black dark:text-white text-center;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+  @apply bg-white dark:bg-zinc-800 text-black dark:text-white text-center;
 }
 
 nav {
-	transition:
-		background-color 0.2s ease-in-out,
-		color 0.2s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 a {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 a:active {
-	color: #f87171;
-	font-weight: bold;
+  color: #f87171;
+  font-weight: bold;
 }

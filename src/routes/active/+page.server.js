@@ -3,9 +3,9 @@ import { createTodo, deleteTodo, setTodoTimer, sendClockData, setDone } from '$l
 
 // ACTIONS
 export const actions = {
-	createTodo,
-	deleteTodo,
-	setTodoTimer,
-	sendClockData,
-	setDone
+  createTodo,
+  deleteTodo,
+  setTodoTimer,
+  sendClockData,
+  setDone
 };

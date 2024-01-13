@@ -1,11 +1,11 @@
 <script>
-	// @ts-nocheck
-	import Todos from '../todos.svelte';
-	export let data;
+  // @ts-nocheck
+  import Todos from '../todos.svelte';
+  export let data;
 </script>
 
 {#each data.todos as todo (todo.id)}
-	{#if todo.done}
-		<Todos {todo} />
-	{/if}
+  {#if todo.done}
+    <Todos {todo} />
+  {/if}
 {/each}
